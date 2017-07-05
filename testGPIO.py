@@ -27,7 +27,7 @@ try:
 			GPIO.output(io21,GPIO.HIGH)
 			pic_name=camera.capture()
 			print(pic_name + '\n')
-			vision_analysis(pic_name)
+			vision_analysis()
 
 except KeyboardInterrupt:
 	print("\n")

@@ -5,12 +5,12 @@ import css
 # Imports the Google Cloud client library
 from google.cloud import vision
 
-def vision_analysis(pic_name):
+def vision_analysis():
 	# Instantiates a client
 	vision_client = vision.Client()
 	
 	# The name of the image file to annotate
-	file_name = os.path.join(os.path.dirname(__file__),pic_name+'.jpg')
+	file_name = os.path.join(os.path.dirname(__file__),'img3.jpg')
 	print('Processing Img : ' + file_name + '\n')
 
 	# Loads the image into memory
