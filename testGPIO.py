@@ -1,6 +1,9 @@
+import sys
 import RPi.GPIO as GPIO
 import time
 import camera
+import vision
+
 
 print("sys.version : ")
 print(sys.version + "\n")
@@ -15,14 +18,16 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(io20,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 GPIO.setup(io21,GPIO.OUT)
 
-print("PRess button to turn ON LED");
+print("Press button to capture PIC");
 try:
 	while(True):
 		if(GPIO.input(io20)):
 			GPIO.output(io21,GPIO.LOW)
 		else:
 			GPIO.output(io21,GPIO.HIGH)
-			camera.capture()
+			pic_name=camera.capture()
+			print(pic_name + '\n')
+			vision_analysis(pic_name)
 
 except KeyboardInterrupt:
 	print("\n")

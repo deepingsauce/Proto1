@@ -13,4 +13,5 @@ def capture():
 	a=a.strftime('%Y-%m-%d %H:%M:%S')
 	camera.capture('/home/jbai/data/%s.jpg' % a)
 	camera.stop_preview()
+	return a
 
