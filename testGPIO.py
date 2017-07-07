@@ -18,16 +18,20 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(io20,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 GPIO.setup(io21,GPIO.OUT)
 
+rot=True
+
 print("Press button to capture PIC");
 try:
-	while(True):
+	while(rot):
 		if(GPIO.input(io20)):
 			GPIO.output(io21,GPIO.LOW)
 		else:
 			GPIO.output(io21,GPIO.HIGH)
+			#print(pic_name + ".jpg Ready\n")
 			pic_name=camera.capture()
-			print(pic_name + '\n')
-			vision_analysis()
+			#print(pic_name + ".jpg Captured\n")
+			vision.vision_analysis()
+			rot=False
 
 except KeyboardInterrupt:
 	print("\n")

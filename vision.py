@@ -21,14 +21,13 @@ def vision_analysis():
 	# Performs label detection on the image file
 	labels = image.detect_labels()
 	sentence = ""
-	speaker = "mijin"  # mijin:미진(한국어, 여성), jinho:진호(한국어, 남성), clara:클라라(영어, 여성), matt:매튜(영어, 남성), yuri:유리(일본어, 여성),
-	# shinji:신지(일본어, 남성), meimei:메이메이(중국어, 여성)
+	speaker = "mijin"  # mijin:미진(한국어, 여성), jinho:진호(한국어, 남성), clara:클라라(영어, 여성), matt:매튜(영어, 남성), yuri:유리(일본어, 여성),# shinji:신지(일본어, 남성), meimei:메이메이(중국어, 여성)
 
 	print('Labels:')
 	for label in labels:
-	    print(label.description)
-	    sentence += " " + label.description
-
+		print(label.description)
+		sentence += " " + label.description
+	print('Sentence:')
 	print(sentence)
 
 	css.tts(sentence=sentence, speaker=speaker)

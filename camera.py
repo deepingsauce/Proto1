@@ -12,7 +12,8 @@ def capture():
 #	a=datetime.datetime.now()
 #	a=a.strftime('%Y-%m-%d %H:%M:%S')
 	a='img3'
-	camera.capture('/home/jbai/data/%s.jpg' % a)
+	#camera.capture('/home/jbai/data/%s.jpg' % a)
+	camera.capture('%s.jpg' % a)
 	camera.stop_preview()
 	return a
 
