@@ -1,12 +1,11 @@
-import sys
 import RPi.GPIO as GPIO
 import time
 import camera
 import vision
 
 
-print("sys.version : ")
-print(sys.version + "\n")
+print("sys.version : overleap")
+#print(sys.version + "\n")
 
 print("GPIO.VERSION : " + GPIO.VERSION)
 print("GPIO.RPI_INFO['P1_REVISION'] = " + str(GPIO.RPI_INFO['P1_REVISION']))
@@ -37,8 +36,12 @@ except KeyboardInterrupt:
 	print("\n")
 	print("Exit by KeyboardInterrupt\n")
 
-except:
+except Exception as e:
 	print("\n")
+	if hasattr(e,'message'):
+		print(e.message)
+	else:
+		print(e)
 	print("Exit by Other case!\n")
 
 finally:

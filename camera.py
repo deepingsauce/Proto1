@@ -17,5 +17,3 @@ def capture():
 	camera.stop_preview()
 	return a
 
-
-capture()
