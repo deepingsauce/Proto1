@@ -1,9 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 import camera
-import vision
+import request
 
-
+print("Deeping Sauce with Server v.1.0")
 print("sys.version : overleap")
 #print(sys.version + "\n")
 
@@ -14,23 +14,27 @@ io20 = 20
 io21 = 21
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(io20,GPIO.IN,pull_up_down=GPIO.PUD_UP)
-GPIO.setup(io21,GPIO.OUT)
+GPIO.setup(io20,GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(io21,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 rot=True
 
 print("Press button to capture PIC");
 try:
 	while(rot):
-		if(GPIO.input(io20)):
-			GPIO.output(io21,GPIO.LOW)
-		else:
-			GPIO.output(io21,GPIO.HIGH)
-			#print(pic_name + ".jpg Ready\n")
-			pic_name=camera.capture()
-			#print(pic_name + ".jpg Captured\n")
-			vision.vision_analysis()
-			rot=False
+		if(not GPIO.input(io20)):	# Labeling(20)
+			print("=> Img Labelling")
+			pic_name = camera.capture()
+			print(pic_name + " Ready\n")
+			request.send_image_json(pic_name,20)
+			rot = False
+			
+		elif(not GPIO.input(io21)):	# OCR(21)
+			print("=> OCR")
+			pic_name = camera.capture()
+			print(pic_name + " Ready\n")
+			request.send_image_json(pic_name,21)
+			rot = False
 
 except KeyboardInterrupt:
 	print("\n")
@@ -42,6 +46,8 @@ except Exception as e:
 		print(e.message)
 	else:
 		print(e)
+	print(e)
+	print("ERROR")
 	print("Exit by Other case!\n")
 
 finally:
